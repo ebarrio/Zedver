@@ -204,7 +204,7 @@ void tcp_recv_perf_traffic(void *p)
 			xil_printf("Data: %u %u %u %u %u %u %u %u %u\n\r",recv_buf[0], recv_buf[1], recv_buf [2], recv_buf[3],recv_buf[4], recv_buf[5], recv_buf[6],recv_buf[7], recv_buf[8]);
 			xil_printf("Data: %u %u %u %u %u %u %u %u %u\n\r",recv_buf[9], recv_buf[10], recv_buf [11], recv_buf[12],recv_buf[13], recv_buf[14], recv_buf[15],recv_buf[16], recv_buf[17]);
 			for(int i = 0; i < (read_bytes - CABECERA_SIZE_16b*sizeof(u16_t)) ; i++){
-				recv_buf[i] = recv_buf[i+CABECERA_SIZE_16b];
+				recv_buf[i] = recv_buf[i+(CABECERA_SIZE_16b*sizeof(u16_t))];
 			}
 			remaining_bytes = write_in_pay(&ComControl,recv_buf,(read_bytes - (CABECERA_SIZE_16b*sizeof(u16_t))));
 		}

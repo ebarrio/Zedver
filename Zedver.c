@@ -26,6 +26,7 @@ Com_struct init_struct(u8_t mode, u8 petic, u16_t bytesRAW, u16_t bytesHisto, u1
 		out.lengthProcess = bytesProcess/2;
 		out.pay[0] = uchars_to_ushort(mode,petic);
 		out.pay[1] = bytesRAW;
+		xil_printf("Bytes RAW = %u", out.pay[1]);
 		out.pay[2] = bytesHisto;
 		out.pay[3] = bytesProcess;
 	}
@@ -54,22 +55,16 @@ void print_Com_struct_head(Com_struct in){
 void print_Com_struct(Com_struct in){
 	xil_printf("\r\n Mode: %u ; Peticion: %u\r\n; lengthRAW: %u; lengthHisto: %u lengthProcess: %u \r\n"
 			, in.mode, in.petic, in.lengthRAW, in.lengthHisto, in.lengthProcess);
-	xil_printf("	RAW data: \r\n");
+	xil_printf("\r\n	RAW data: \r\n");
 	for(int i = 4; i < (4 + in.lengthRAW) ; i++){
-		if(i%6 == 0)
-			xil_printf("\r\n");
 		xil_printf("%u ", in.pay[i]);
 	}
-	xil_printf("	Histogram data: \r\n");
+	xil_printf("\r\n	Histogram data: \r\n");
 	for(int i = (4 + in.lengthRAW); i < (4 + in.lengthRAW + in.lengthHisto) ; i++){
-		if(i%6 == 0)
-			xil_printf("\r\n");
 		xil_printf("%u ", in.pay[i]);
 	}
-	xil_printf("	Process data: \r\n");
+	xil_printf("\r\n	Process data: \r\n");
 	for(int i = (4 + in.lengthRAW + in.lengthHisto) ; i < (4 + in.lengthRAW + in.lengthHisto + in.lengthProcess) ; i++){
-		if(i%6 == 0)
-			xil_printf("\r\n");
 		xil_printf("%u ", in.pay[i]);
 	}
 }
@@ -112,7 +107,7 @@ u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_o
 		bytes_to_write = space_in_buffer_bytes;
 	}
 	for(int i = 0; i < bytes_to_write; i++){
-		in->pay[CABECERA_SIZE_16b + in->raw_in_buffer + (i/2)] = uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+		in->pay[CABECERA_SIZE_16b + in->raw_in_buffer + (i/2)] = uchars_to_ushort(data[i+bytes_offset+1],data[i+bytes_offset]); }
 	in->raw_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
@@ -125,7 +120,7 @@ u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes
 	}
 	for(int i = 0; i < bytes_to_write; i++){
 		in->pay[CABECERA_SIZE_16b + in->lengthRAW + in->histo_in_buffer + (i/2)] =
-				uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+				uchars_to_ushort(data[i+bytes_offset+1],data[i+bytes_offset]); }
 	in->histo_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
@@ -138,7 +133,7 @@ u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t byt
 	}
 	for(int i = 0; i < bytes_to_write; i++){
 		in->pay[CABECERA_SIZE_16b + in->lengthRAW + in->lengthHisto + in->process_in_buffer + (i/2)] =
-				uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+				uchars_to_ushort(data[i+bytes_offset+1],data[i+bytes_offset]); }
 	in->process_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
