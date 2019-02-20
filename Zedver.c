@@ -7,13 +7,12 @@ void histogram (u16_t sim_array[], u16_t histo_array[]){
         histo_array[(sim_array[i])]++;
     }
 }
-unsigned short uchars_to_ushort (unsigned char byteMSV, unsigned char byteLSV){
+unsigned short uchars_to_ushort (unsigned char byteMSB, unsigned char byteLSB){
 	unsigned short out = 0;
-	out = byteLSV | (((unsigned short) byteMSV << 8) & 0xFF00);
+	out = byteLSB | (((unsigned short) byteMSB << 8) & 0xFF00);
 	return out;
 }
-/*
- * init_struct
+/*init_struct
  * Set the parameters and put them in the headboard of payload vector
  * Return Com_struct with fixed parameters
  */
@@ -21,7 +20,7 @@ Com_struct init_struct(u8_t mode, u8 petic, u16_t bytesRAW, u16_t bytesHisto, u1
 	Com_struct out;
 	out.mode = mode;
 	out.petic = petic;
-	if (bytesRAW + bytesHisto + bytesProcess + 4*sizeof(u16_t) < (PAYLOAD_SIZE_16b*2)){
+	if (bytesRAW + bytesHisto + bytesProcess + CABECERA_SIZE_16b*sizeof(u16_t) < (PAYLOAD_SIZE_16b*sizeof(u16_t))){
 		out.lengthRAW = bytesRAW/2;
 		out.lengthHisto = bytesHisto/2;
 		out.lengthProcess = bytesProcess/2;
@@ -49,8 +48,7 @@ void print_Com_struct_head(Com_struct in){
 	xil_printf("\r\n Mode: %u ; Peticion: %u\r\n; lengthRAW: %u; lengthHisto: %u lengthProcess: %u \r\n"
 			, in.mode, in.petic, in.lengthRAW, in.lengthHisto, in.lengthProcess);
 }
-/*
- * print_Com_struct
+/* print_Com_struct
  * Print in terminal head parameters of Com_struct and all payload
  */
 void print_Com_struct(Com_struct in){
@@ -75,27 +73,38 @@ void print_Com_struct(Com_struct in){
 		xil_printf("%u ", in.pay[i]);
 	}
 }
+/*check_if_ready_to_send
+ * If all lengths are the same that elements in buffer the struct is ready to process and send
+ */
 void check_if_ready_to_send(Com_struct * in){
 	if((in -> raw_in_buffer >= in -> lengthRAW)
 		&& (in -> histo_in_buffer >= in -> lengthHisto)
 		&& (in -> process_in_buffer >= in -> lengthProcess)){
 		in->ready_to_send = 1; }
 }
+/*write_in_pay
+ * In function of lengths fixed in init, write in order in the pay data with support of set functions.
+ * Before return call check_if_ready_to_send function.
+ * Return the number of bytes that can't be write because the lengths are short.
+ */
 u16_t write_in_pay (Com_struct * in, u8_t data [], u16_t bytes_data){
 	u16_t bytes_left = bytes_data;
+	u16_t bytes_offset = 0;
 	if(bytes_data > 0){
-		bytes_left = set_raw_data(in, data, bytes_left);
+		bytes_left = set_raw_data(in, data, bytes_left, bytes_offset);
+		bytes_offset = bytes_data - bytes_left;
 	}
-	if(bytes_data > 0){
-		bytes_left = set_histo_data(in, data, bytes_left);
+	if(bytes_left > 0){
+		bytes_left = set_histo_data(in, data, bytes_left, bytes_offset);
+		bytes_offset = bytes_data - bytes_left;
 	}
-	if(bytes_data > 0){
-		bytes_left = set_process_data(in, data, bytes_left);
+	if(bytes_left > 0){
+		bytes_left = set_process_data(in, data, bytes_left, bytes_offset);
 	}
 	check_if_ready_to_send(in);
 	return bytes_left;
 }
-u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data){
+u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthRAW - in->raw_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
 	if(bytes_to_write > space_in_buffer_bytes){
@@ -103,11 +112,11 @@ u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data){
 		bytes_to_write = space_in_buffer_bytes;
 	}
 	for(int i = 0; i < bytes_to_write; i++){
-		in->pay[(CABECERA_SIZE_16b + in->raw_in_buffer + i)/2] = uchars_to_ushort(data[i],data[i+1]); }
-	in->raw_in_buffer += bytes_to_write;
+		in->pay[CABECERA_SIZE_16b + in->raw_in_buffer + (i/2)] = uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+	in->raw_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
-u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data){
+u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthHisto - in->histo_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
 	if(bytes_to_write > space_in_buffer_bytes){
@@ -115,12 +124,12 @@ u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data){
 		bytes_to_write = space_in_buffer_bytes;
 	}
 	for(int i = 0; i < bytes_to_write; i++){
-		in->pay[(CABECERA_SIZE_16b + in->lengthRAW + in->histo_in_buffer + i)/2] =
-				uchars_to_ushort(data[i],data[i+1]); }
-	in->histo_in_buffer += bytes_to_write;
+		in->pay[CABECERA_SIZE_16b + in->lengthRAW + in->histo_in_buffer + (i/2)] =
+				uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+	in->histo_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
-u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data){
+u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthProcess - in->process_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
 	if(bytes_to_write > space_in_buffer_bytes){
@@ -128,9 +137,9 @@ u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data){
 		bytes_to_write = space_in_buffer_bytes;
 	}
 	for(int i = 0; i < bytes_to_write; i++){
-		in->pay[(CABECERA_SIZE_16b + in->lengthRAW + in->lengthHisto + in->process_in_buffer + i)/2] =
-				uchars_to_ushort(data[i],data[i+1]); }
-	in->process_in_buffer += bytes_to_write;
+		in->pay[CABECERA_SIZE_16b + in->lengthRAW + in->lengthHisto + in->process_in_buffer + (i/2)] =
+				uchars_to_ushort(data[i+bytes_offset],data[i+bytes_offset+1]); }
+	in->process_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
 Com_struct process_Com_struct(Com_struct in){

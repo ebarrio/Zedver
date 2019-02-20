@@ -201,10 +201,12 @@ void tcp_recv_perf_traffic(void *p)
 					/*BytesProcess:*/uchars_to_ushort(recv_buf[6],recv_buf[7]));
 			control_in_process = 1;
 			/* Write in pay recv_bux, except for headboard */
+			xil_printf("Data: %u %u %u %u %u %u %u %u %u\n\r",recv_buf[0], recv_buf[1], recv_buf [2], recv_buf[3],recv_buf[4], recv_buf[5], recv_buf[6],recv_buf[7], recv_buf[8]);
+			xil_printf("Data: %u %u %u %u %u %u %u %u %u\n\r",recv_buf[9], recv_buf[10], recv_buf [11], recv_buf[12],recv_buf[13], recv_buf[14], recv_buf[15],recv_buf[16], recv_buf[17]);
 			for(int i = 0; i < (read_bytes - CABECERA_SIZE_16b*sizeof(u16_t)) ; i++){
 				recv_buf[i] = recv_buf[i+CABECERA_SIZE_16b];
 			}
-			remaining_bytes = write_in_pay(&ComControl,recv_buf,(read_bytes -  CABECERA_SIZE_16b));
+			remaining_bytes = write_in_pay(&ComControl,recv_buf,(read_bytes - (CABECERA_SIZE_16b*sizeof(u16_t))));
 		}
 		else{
 			remaining_bytes = write_in_pay(&ComControl, recv_buf, read_bytes);
@@ -212,7 +214,8 @@ void tcp_recv_perf_traffic(void *p)
 		if(remaining_bytes == 0){xil_printf("Remaining bytes: %u\n\r",remaining_bytes);}
 		if(ComControl.ready_to_send){
 			control_in_process = 0;
-			ComControl = process_Com_struct(ComControl);
+			print_Com_struct(ComControl);
+			//ComControl = process_Com_struct(ComControl);
 			send_bytes = sizeof(u16_t)*((CABECERA_SIZE_16b) + ComControl.raw_in_buffer + ComControl.histo_in_buffer
 						+ ComControl.process_in_buffer);
 			if ((send_bytes = write(sock, ComControl.pay, send_bytes)) < 0) {
@@ -225,7 +228,6 @@ void tcp_recv_perf_traffic(void *p)
 	}
 
 	/* close connection */
-	print_Com_struct(ComControl);
 	close(sock);
 	vTaskDelete(NULL);
 }
