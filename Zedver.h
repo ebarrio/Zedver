@@ -3,7 +3,6 @@
 #define LED_DELAY 10000000							/* Software delay length */
 #define LED_CHANNEL 1								/* GPIO port for LEDs */
 #define THREAD_STACKSIZE 1024
-#define SIMU_BUF_SIZE_16b 4500
 #define CABECERA_SIZE_16b 4
 #define DATA_SIZE_16b 5000
 #define PAYLOAD_SIZE_16b DATA_SIZE_16b + CABECERA_SIZE_16b
@@ -42,7 +41,7 @@ typedef struct{
 	u8_t ready_to_send;
 }Com_struct;
 
-void histogram (u16_t sim_array[], u16_t histo_array[]);
+void histogram (u16_t sim_array[], u16_t histo_array[], u16_t data_length);
 void bytes_to_buffer(u16_t data[] , u8_t bytes[] , u16_t buffer_length, u16_t offset);
 unsigned short uchars_to_ushort (u8_t ByteMSV, u8_t ByteLSV);
 /*Inicializamiento y visualizacion*/

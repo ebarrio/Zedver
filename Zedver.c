@@ -1,9 +1,9 @@
 #include "Zedver.h"
-void histogram (u16_t sim_array[], u16_t histo_array[]){
+void histogram (u16_t sim_array[], u16_t histo_array[],u16_t data_length){
     for (int i = 0; i < HISTOGRAM_LEVELS ; i++){
         histo_array [i] = 0;
     }
-    for (int i = 0; i < SIMU_BUF_SIZE_16b; i++){
+    for (int i = 0; i < data_length; i++){
         histo_array[(sim_array[i])]++;
     }
 }
@@ -20,13 +20,12 @@ Com_struct init_struct(u8_t mode, u8 petic, u16_t bytesRAW, u16_t bytesHisto, u1
 	Com_struct out;
 	out.mode = mode;
 	out.petic = petic;
-	if (bytesRAW + bytesHisto + bytesProcess + CABECERA_SIZE_16b*sizeof(u16_t) < (PAYLOAD_SIZE_16b*sizeof(u16_t))){
+	if ((sizeof(u16_t)*DATA_SIZE_16b) >= (bytesRAW + bytesHisto + bytesProcess)){
 		out.lengthRAW = bytesRAW/2;
 		out.lengthHisto = bytesHisto/2;
 		out.lengthProcess = bytesProcess/2;
 		out.pay[0] = uchars_to_ushort(mode,petic);
 		out.pay[1] = bytesRAW;
-		xil_printf("Bytes RAW = %u", out.pay[1]);
 		out.pay[2] = bytesHisto;
 		out.pay[3] = bytesProcess;
 	}
@@ -43,14 +42,14 @@ Com_struct init_struct(u8_t mode, u8 petic, u16_t bytesRAW, u16_t bytesHisto, u1
 }
 /*
  * print_Com_struct_head
- * Print in terminal head parameters of Com_struct
+ * Print in terminal head-parameters of Com_struct
  */
 void print_Com_struct_head(Com_struct in){
 	xil_printf("\r\n Mode: %u ; Peticion: %u\r\n; lengthRAW: %u; lengthHisto: %u lengthProcess: %u \r\n"
 			, in.mode, in.petic, in.lengthRAW, in.lengthHisto, in.lengthProcess);
 }
 /* print_Com_struct
- * Print in terminal head parameters of Com_struct and all payload
+ * Print in terminal head-parameters of Com_struct and all payload
  */
 void print_Com_struct(Com_struct in){
 	xil_printf("\r\n Mode: %u ; Peticion: %u\r\n; lengthRAW: %u; lengthHisto: %u lengthProcess: %u \r\n"
@@ -99,6 +98,10 @@ u16_t write_in_pay (Com_struct * in, u8_t data [], u16_t bytes_data){
 	check_if_ready_to_send(in);
 	return bytes_left;
 }
+/* set_raw_data
+ *  Set bytes in u16 buffer if it have enough length
+ *  Return remaining bytes for write in histogram
+ */
 u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthRAW - in->raw_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
@@ -111,6 +114,10 @@ u16_t set_raw_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_o
 	in->raw_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
+/* set_histo_data
+ *  Set bytes in u16 payload buffer if it have enough length
+ *  Return remaining bytes for write in process data
+ */
 u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthHisto - in->histo_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
@@ -124,6 +131,10 @@ u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes
 	in->histo_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
+/* set_process_data
+ *  Set bytes in u16 payload buffer if it have enough length
+ *  Return remaining bytes
+ */
 u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset){
 	u16_t space_in_buffer_bytes = sizeof(u16_t) * (in ->lengthProcess - in->process_in_buffer);
 	u16_t remaining_bytes = 0, bytes_to_write = bytes_data;
