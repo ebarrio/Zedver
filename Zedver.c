@@ -148,6 +148,13 @@ u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t byt
 	in->process_in_buffer += bytes_to_write/sizeof(u16_t);
 	return remaining_bytes;
 }
+/* According to the Com_struct mode, process the petition and create Com_struct for the answer
+ * Mode = 1: Write in simulation buffer. Answer for confirm.
+ * Mode = 2: Read of simulation buffer and put it in the answer.
+ * Mode = 3: Echo mode, answer with the same Com_struct.
+ * Mode = 4: Process the simulation buffer and answer with the output.
+ * Mode = 5: Process the ADC data and answer with the output.
+ */
 Com_struct process_Com_struct(Com_struct in){
 	Com_struct out;
 	if(in.mode == 9){
