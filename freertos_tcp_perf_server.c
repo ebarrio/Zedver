@@ -150,7 +150,7 @@ void tcp_recv_perf_traffic(void *p)
 	server.total_bytes = 0;
 	print_tcp_conn_stats(sock);
 
-	Com_struct ComControl;
+	Com_struct ComControl, ComSimulation;
 	u8_t control_in_process = 0;
 	u16_t remaining_bytes = 0;
 	while (1) {
@@ -214,7 +214,7 @@ void tcp_recv_perf_traffic(void *p)
 			control_in_process = 0;
 			if(remaining_bytes != 0){xil_printf("Remaining bytes: %u\r\n", remaining_bytes);}
 			print_Com_struct(ComControl);
-			//ComControl = process_Com_struct(ComControl);
+			ComControl = process_Com_struct(ComControl, &ComSimulation);
 			send_bytes = sizeof(u16_t)*((CABECERA_SIZE_16b) + ComControl.raw_in_buffer + ComControl.histo_in_buffer
 						+ ComControl.process_in_buffer);
 			if ((send_bytes = write(sock, ComControl.pay, send_bytes)) < 0) {

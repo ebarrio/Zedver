@@ -155,14 +155,17 @@ u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t byt
  * Mode = 4: Process the simulation buffer and answer with the output.
  * Mode = 5: Process the ADC data and answer with the output.
  */
-Com_struct process_Com_struct(Com_struct in){
-	Com_struct out;
-	if(in.mode == 9){
-		out = in;
+Com_struct process_Com_struct(Com_struct control, Com_struct * simulation){
+	Com_struct answer;
+	if(control.mode == 1){
+		*simulation = control;
+		answer = init_struct(simulation->mode, simulation->petic, 0 , 0 , 0);
+	}
+	if(control.mode == 2){
+		answer = *simulation;
 	}
 	else{
-		out = in;
+		answer = control;
 	}
-	return out;
+	return answer;
 }
-
