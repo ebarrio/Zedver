@@ -7,6 +7,7 @@
 #define DATA_SIZE_16b 5000
 #define PAYLOAD_SIZE_16b DATA_SIZE_16b + CABECERA_SIZE_16b
 #define HISTOGRAM_LEVELS 256
+#define PROCESS_SIZE_16b 3
 #define RECV_BUF_BYTES 1500
 #include "xil_printf.h"
 #include <stdio.h>
@@ -55,5 +56,8 @@ u16_t set_histo_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes
 u16_t set_process_data(Com_struct * in, u8_t data[], u16_t bytes_data, u16_t bytes_offset);
 Com_struct process_Com_struct(Com_struct, Com_struct *);
 void write_simulation_buffer(Com_struct, Com_struct *);
+Com_struct process_simulation_buffer(Com_struct simulation);
+void get_RAW_data (Com_struct , u16_t []);
+void set_histogram(Com_struct* Com, u16_t histo_data []);
 
 

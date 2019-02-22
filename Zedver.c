@@ -161,11 +161,35 @@ Com_struct process_Com_struct(Com_struct control, Com_struct * simulation){
 		*simulation = control;
 		answer = init_struct(simulation->mode, simulation->petic, 0 , 0 , 0);
 	}
-	if(control.mode == 2){
+	else if(control.mode == 2){
 		answer = *simulation;
+	}
+	else if(control.mode == 4){
+		answer = process_simulation_buffer(*simulation);
 	}
 	else{
 		answer = control;
 	}
 	return answer;
+}
+Com_struct process_simulation_buffer(Com_struct simulation){
+	Com_struct answer;
+	u16_t histogram_simulation[HISTOGRAM_LEVELS];
+	u16_t raw_simulation_data[simulation.lengthRAW];
+	get_RAW_data(simulation, raw_simulation_data);
+	histogram(raw_simulation_data, histogram_simulation, simulation.lengthRAW);
+	set_histogram(&simulation, histogram_simulation);
+	answer = init_struct(4,6,0,HISTOGRAM_LEVELS*sizeof(u16_t),PROCESS_SIZE_16b*sizeof(u16_t));
+	return answer;
+}
+void get_RAW_data (Com_struct in, u16_t out []){
+	for(int i = 0; i < in.lengthRAW; i++){
+		out[i] = in.pay[(i+CABECERA_SIZE_16b)];
+	}
+}
+void set_histogram(Com_struct* Com, u16_t histo_data []){
+	for(int i = 0; i < Com->lengthHisto; i++){
+		Com->pay[i+CABECERA_SIZE_16b+Com->lengthRAW] = histo_data[i];
+	}
+	Com->raw_in_buffer = Com->lengthRAW;
 }
