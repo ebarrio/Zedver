@@ -34,7 +34,6 @@ figure(2)
 pause(1)
 plot(hist_array)
 %% Find the bounds
-figure(3)
 for i = 1:histogram_bins
     if(hist_array(i) > 0)
         low_bin = i;
