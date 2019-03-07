@@ -24,7 +24,6 @@ top_array = top*(ones(1,length(signal_template_1)));
 flat_array = flat*(ones(1,length(signal_template_1)));
 %% Transition duration
 [tup, tdown] = zed_transition(signal_template_1, x1perc, x2perc);
-
 %% Graphs
 figure(1)
 hold on
