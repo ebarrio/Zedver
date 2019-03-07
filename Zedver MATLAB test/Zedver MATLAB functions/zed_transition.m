@@ -16,7 +16,7 @@ up_tx2 = 0;
 ready_1 = 0;
 % Find up transition reference levels
 for n = 1:length(sign)
-    if(ready_1 == 1)
+    if(ready_1 == 0)
         if(sign(n) > yx1)
             up_tx1 = n;
             ready_1 = 1;
@@ -31,7 +31,7 @@ end
 ready_1 = 0;
 % Find down transition reference levels
 for n = length(sign):-1:1
-    if(ready_1 == 1)
+    if(ready_1 == 0)
         if(sign(n) > yx1)
             down_tx1 = n;
             ready_1 = 1;
