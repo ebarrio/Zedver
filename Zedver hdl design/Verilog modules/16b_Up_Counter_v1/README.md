@@ -1,1 +1,1 @@
-![Screenshot](16_counter_sim.png)
+![Screenshot](16b_counter_sim.png)
