@@ -50,20 +50,20 @@ int main()
 	ad9517_init.spi_init.cpha = 0;
 	ad9517_init.spi_init.cpol = 0;
 
-	/* AD9467 Setup. */
+	// AD9467 Setup.
 	ad9467_setup(&ad9467_device, ad9467_init);
 
-	/* AD9517 Setup. */
-	/* Initialize device. */
+	// AD9517 Setup.
+	// Initialize device.
 	ad9517_setup(&ad9517_device, ad9517_init);
-	/* Set channel 3 for normal operation */
+	// Set channel 3 for normal operation.
 	ad9517_power_mode(ad9517_device, 3, 0);
-	/* Set the channel 3 frequency to 250Mhz */
+	// Set the channel 3 frequency to 250Mhz.
 	ad9517_frequency(ad9517_device, 3, 250000000);
-	/* Update registers */
+	// Update registers.
 	ad9517_update(ad9517_device);
 
-	/* Read the device ID for AD9467 and AD9517. */
+	// Read the device ID for AD9467 and AD9517.
 	xil_printf("\n\r*****************************************************\r\n");
 	xil_printf("  ADI AD9467-FMC-EBZ Reference Design\n\r");
 	ad9467_read(ad9467_device, AD9467_REG_CHIP_ID, &ret_val);
@@ -74,7 +74,7 @@ int main()
 	xil_printf("  AD9517 CHIP ID: 0x%02x", ret_val_32);
 	xil_printf("\n\r*****************************************************\r\n");
 
-	/* AD9467 test. */
+	// AD9467 test.
 	adc_setup(ad9467_core);
 
 	// setup device
@@ -91,7 +91,7 @@ int main()
 	}
 	adc_write(ad9467_core, ADC_REG_DELAY_CNTRL, 0x0);
 	adc_write(ad9467_core, ADC_REG_DELAY_CNTRL, 0x20F1F);
-
+	// Calibrate phase delay
 	mdelay(10);
 	if (adc_delay_calibrate(ad9467_core, 8, 1)) {
 		ad9467_read(ad9467_device, 0x16, &ret_val);
@@ -107,15 +107,15 @@ int main()
 		}
 	}
 
-	/* Data pattern checks */
+	// Test devices with data pattern checks
 	for (mode = MIDSCALE; mode <= ONE_ZERO_TOGGLE; mode++) {
-		/* Data format is offset binary */
+		// Data format is offset binary */
 		adc_test(ad9467_core, ad9467_dma, ad9467_device, mode, OFFSET_BINARY);
-		/* Data format is twos complement */
+		// Data format is twos complement */
 		adc_test(ad9467_core, ad9467_dma, ad9467_device, mode, TWOS_COMPLEMENT);
 	}
 	xil_printf("Testing done.\n\r");
-	/* AD9467 Setup for data acquisition */
+	// AD9467 Setup for data acquisition
 	ad9467_output_invert(ad9467_device, 0, &status);	// Output invert Off
 	ad9467_transfer(ad9467_device);				// Synchronously update registers
 	ad9467_output_format(ad9467_device, 1, &status);	// Twos complement
@@ -131,6 +131,8 @@ int main()
 
 	dmac_start_transaction(ad9467_dma);
 
+	xil_printf("Start Zedver test");
+	zedver_dma_test1(ad9467_dma);
 	xil_printf("Done.\n\r");
 
 	ad9467_remove(ad9467_device);

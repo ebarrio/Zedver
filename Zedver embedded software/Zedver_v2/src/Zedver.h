@@ -16,3 +16,4 @@
 #include "AnalogDevicesDrivers\platform_drivers.h"
 
 //void init_spi_devices();
+void zedver_dma_test1(dmac_core);
