@@ -1,0 +1,620 @@
+
+Connected to COM9 at 115200
+Hello World
+
+Hello World
+
+Already connected to port: COM9Testing done.
+
+Hello World
+
+Testing done.
+
+Already connected to port: COM9Testing done.
+
+Testing done.
+
+
+
+*****************************************************
+
+  ADI AD9467-FMC-EBZ Reference Design
+
+  AD9467 CHIP ID: 0x50
+
+  AD9467 CHIP GRADE: 0x20
+
+  AD9517 CHIP ID: 0x2E578DD3
+
+*****************************************************
+
+adc_setup adc core initialized (250 MHz).
+AD9467[0x016]: 00
+
+adc_delay: setting zero error delay (14)
+
+ADC Test: mode - MIDSCALE
+
+          format - OFFSET BINARY
+
+		Test passed
+
+ADC Test: mode - MIDSCALE
+
+          format - TWOS_COMPLEMENT
+
+  ERROR[ 0]: rcv(80008000), exp(00000000)
+
+  ERROR[ 1]: rcv(80008000), exp(00000000)
+
+  ERROR[ 2]: rcv(80008000), exp(00000000)
+
+  ERROR[ 3]: rcv(80008000), exp(00000000)
+
+  ERROR[ 4]: rcv(80008000), exp(00000000)
+
+  ERROR[ 5]: rcv(80008000), exp(00000000)
+
+  ERROR[ 6]: rcv(80008000), exp(00000000)
+
+  ERROR[ 7]: rcv(80008000), exp(00000000)
+
+  ERROR[ 8]: rcv(80008000), exp(00000000)
+
+  ERROR[ 9]: rcv(80008000), exp(00000000)
+
+  ERROR[10]: rcv(80008000), exp(00000000)
+
+  ERROR[11]: rcv(80008000), exp(00000000)
+
+  ERROR[12]: rcv(80008000), exp(00000000)
+
+  ERROR[13]: rcv(80008000), exp(00000000)
+
+  ERROR[14]: rcv(80008000), exp(00000000)
+
+  ERROR[15]: rcv(80008000), exp(00000000)
+
+  ERROR[16]: rcv(80008000), exp(00000000)
+
+  ERROR[17]: rcv(80008000), exp(00000000)
+
+  ERROR[18]: rcv(80008000), exp(00000000)
+
+  ERROR[19]: rcv(80008000), exp(00000000)
+
+  ERROR[20]: rcv(80008000), exp(00000000)
+
+  ERROR[21]: rcv(80008000), exp(00000000)
+
+  ERROR[22]: rcv(80008000), exp(00000000)
+
+  ERROR[23]: rcv(80008000), exp(00000000)
+
+  ERROR[24]: rcv(80008000), exp(00000000)
+
+  ERROR[25]: rcv(80008000), exp(00000000)
+
+  ERROR[26]: rcv(80008000), exp(00000000)
+
+  ERROR[27]: rcv(80008000), exp(00000000)
+
+  ERROR[28]: rcv(80008000), exp(00000000)
+
+  ERROR[29]: rcv(80008000), exp(00000000)
+
+  ERROR[30]: rcv(80008000), exp(00000000)
+
+  ERROR[31]: rcv(80008000), exp(00000000)
+
+ADC Test: mode - POS_FULLSCALE
+
+          format - OFFSET BINARY
+
+  ERROR[ 0]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 1]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 2]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 3]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 4]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 5]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 6]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 7]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 8]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[ 9]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[10]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[11]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[12]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[13]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[14]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[15]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[16]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[17]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[18]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[19]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[20]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[21]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[22]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[23]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[24]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[25]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[26]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[27]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[28]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[29]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[30]: rcv(80008000), exp(FFFFFFFF)
+
+  ERROR[31]: rcv(80008000), exp(FFFFFFFF)
+
+ADC Test: mode - POS_FULLSCALE
+
+          format - TWOS_COMPLEMENT
+
+  ERROR[ 0]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 1]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 2]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 3]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 4]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 5]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 6]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 7]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 8]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[ 9]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[10]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[11]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[12]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[13]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[14]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[15]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[16]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[17]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[18]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[19]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[20]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[21]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[22]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[23]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[24]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[25]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[26]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[27]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[28]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[29]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[30]: rcv(80008000), exp(7FFF7FFF)
+
+  ERROR[31]: rcv(80008000), exp(7FFF7FFF)
+
+ADC Test: mode - NEG_FULLSCALE BINARY
+
+          format - OFFSET BINARY
+
+  ERROR[ 0]: rcv(80008000), exp(00000000)
+
+  ERROR[ 1]: rcv(80008000), exp(00000000)
+
+  ERROR[ 2]: rcv(80008000), exp(00000000)
+
+  ERROR[ 3]: rcv(80008000), exp(00000000)
+
+  ERROR[ 4]: rcv(80008000), exp(00000000)
+
+  ERROR[ 5]: rcv(80008000), exp(00000000)
+
+  ERROR[ 6]: rcv(80008000), exp(00000000)
+
+  ERROR[ 7]: rcv(80008000), exp(00000000)
+
+  ERROR[ 8]: rcv(80008000), exp(00000000)
+
+  ERROR[ 9]: rcv(80008000), exp(00000000)
+
+  ERROR[10]: rcv(80008000), exp(00000000)
+
+  ERROR[11]: rcv(80008000), exp(00000000)
+
+  ERROR[12]: rcv(80008000), exp(00000000)
+
+  ERROR[13]: rcv(80008000), exp(00000000)
+
+  ERROR[14]: rcv(80008000), exp(00000000)
+
+  ERROR[15]: rcv(80008000), exp(00000000)
+
+  ERROR[16]: rcv(80008000), exp(00000000)
+
+  ERROR[17]: rcv(80008000), exp(00000000)
+
+  ERROR[18]: rcv(80008000), exp(00000000)
+
+  ERROR[19]: rcv(80008000), exp(00000000)
+
+  ERROR[20]: rcv(80008000), exp(00000000)
+
+  ERROR[21]: rcv(80008000), exp(00000000)
+
+  ERROR[22]: rcv(80008000), exp(00000000)
+
+  ERROR[23]: rcv(80008000), exp(00000000)
+
+  ERROR[24]: rcv(80008000), exp(00000000)
+
+  ERROR[25]: rcv(80008000), exp(00000000)
+
+  ERROR[26]: rcv(80008000), exp(00000000)
+
+  ERROR[27]: rcv(80008000), exp(00000000)
+
+  ERROR[28]: rcv(80008000), exp(00000000)
+
+  ERROR[29]: rcv(80008000), exp(00000000)
+
+  ERROR[30]: rcv(80008000), exp(00000000)
+
+  ERROR[31]: rcv(80008000), exp(00000000)
+
+ADC Test: mode - NEG_FULLSCALE BINARY
+
+          format - TWOS_COMPLEMENT
+
+		Test passed
+
+ADC Test: mode - CHECKERBOARD
+
+          format - OFFSET BINARY
+
+  ERROR[ 0]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 1]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 2]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 3]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 4]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 5]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 6]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 7]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 8]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 9]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[10]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[11]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[12]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[13]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[14]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[15]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[16]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[17]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[18]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[19]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[20]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[21]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[22]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[23]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[24]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[25]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[26]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[27]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[28]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[29]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[30]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[31]: rcv(80008000), exp(AAAA5555)
+
+ADC Test: mode - CHECKERBOARD
+
+          format - TWOS_COMPLEMENT
+
+  ERROR[ 0]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 1]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 2]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 3]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 4]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 5]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 6]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 7]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 8]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[ 9]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[10]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[11]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[12]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[13]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[14]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[15]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[16]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[17]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[18]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[19]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[20]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[21]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[22]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[23]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[24]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[25]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[26]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[27]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[28]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[29]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[30]: rcv(80008000), exp(AAAA5555)
+
+  ERROR[31]: rcv(80008000), exp(AAAA5555)
+
+ADC Test: mode - PN_23_SEQUENCE
+
+          format - OFFSET BINARY
+
+          Test passed
+
+ADC Test: mode - PN_23_SEQUENCE
+
+          format - TWOS_COMPLEMENT
+
+          Test skipped
+
+ADC Test: mode - PN_9_SEQUENCE
+
+          format - OFFSET BINARY
+
+  ERROR: PN status(0002).
+
+ADC Test: mode - PN_9_SEQUENCE
+
+          format - TWOS_COMPLEMENT
+
+          Test skipped
+
+ADC Test: mode - ONE_ZERO_TOGGLE
+
+          format - OFFSET BINARY
+
+  ERROR[ 0]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 1]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 2]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 3]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 4]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 5]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 6]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 7]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 8]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 9]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[10]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[11]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[12]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[13]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[14]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[15]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[16]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[17]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[18]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[19]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[20]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[21]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[22]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[23]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[24]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[25]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[26]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[27]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[28]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[29]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[30]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[31]: rcv(80008000), exp(FFFF0000)
+
+ADC Test: mode - ONE_ZERO_TOGGLE
+
+          format - TWOS_COMPLEMENT
+
+  ERROR[ 0]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 1]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 2]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 3]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 4]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 5]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 6]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 7]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 8]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[ 9]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[10]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[11]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[12]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[13]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[14]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[15]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[16]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[17]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[18]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[19]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[20]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[21]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[22]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[23]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[24]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[25]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[26]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[27]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[28]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[29]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[30]: rcv(80008000), exp(FFFF0000)
+
+  ERROR[31]: rcv(80008000), exp(FFFF0000)
+
+Testing done.
+
+Start capturing data...
+
+Start Zedver test
