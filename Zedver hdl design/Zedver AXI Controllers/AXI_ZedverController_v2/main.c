@@ -44,18 +44,36 @@
  *   uartlite    Configurable only in HW design
  *   ps7_uart    115200 (configured by bootrom/bsp)
  */
-
-#include <stdio.h>
+#define HIGH 0xFFFFFFFF
+#define LOW  0x00000000
 #include "platform.h"
-#include "xil_printf.h"
+#include "xbasic_types.h"
+#include "xparameters.h"
+#include "xil_io.h" // Include Xil_In/Out functions
+#include "sleep.h"
 
+u32 change_bit(u32 in, u8 bit_pos){
+	u32 out = 0;
+	u32 bit = (in >> bit_pos) & 1; //Move bit to first position and logical AND with 0X00000001
+	if(bit)
+		out = (in & ~(1 << bit_pos));  // Set bit to 0
+	else
+		out = (in | (1<<bit_pos)); // Set bit to 1
+	return out;
+}
 
 int main()
 {
+	u32 value = LOW;
     init_platform();
-
-    print("Hello World\n\r");
-
+    xil_printf("Start AXI Controller test: \n\r");
+    while(1){
+    	Xil_Out32(XPAR_ZEDVER_AXI_CONTROLLER_0_S00_AXI_BASEADDR , value);
+    	xil_printf("Register value = 0x%08x \n\r", value);
+    	value = change_bit(value, 0);
+    	value = change_bit(value, 31);
+    	sleep(1);
+    }
     cleanup_platform();
     return 0;
 }
